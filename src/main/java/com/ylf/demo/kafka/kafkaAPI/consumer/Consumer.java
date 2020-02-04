@@ -1,4 +1,4 @@
-package com.ylf.demo.kafka.kafkaAPI;
+package com.ylf.demo.kafka.kafkaAPI.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

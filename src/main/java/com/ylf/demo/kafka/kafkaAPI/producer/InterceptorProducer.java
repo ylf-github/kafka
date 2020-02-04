@@ -1,4 +1,4 @@
-package com.ylf.demo.kafka.kafkaAPI;
+package com.ylf.demo.kafka.kafkaAPI.producer;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;

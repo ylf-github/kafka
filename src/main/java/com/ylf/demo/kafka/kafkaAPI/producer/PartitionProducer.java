@@ -1,4 +1,4 @@
-package com.ylf.demo.kafka.kafkaAPI;
+package com.ylf.demo.kafka.kafkaAPI.producer;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -7,13 +7,11 @@ import java.util.Properties;
 
 /**
  * @author: leifeng.ye
- * @date: 2020-01-16
+ * @date: 2020-02-04
  * @desc:
  */
-public class Producer {
-   // static Logger log= LoggerFactory.getLogger(Producer.class);
-
-    private static String TOPIC="ylf";
+public class PartitionProducer {
+    private static String TOPIC="face";
     private static String BROKER_LIST="120.27.246.207:9092";
     private static KafkaProducer<String,String> producer=null;
 
@@ -27,11 +25,12 @@ public class Producer {
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,BROKER_LIST);
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
+        properties.put(ProducerConfig.PARTITIONER_CLASS_CONFIG,"com.ylf.demo.kafka.kafkaAPI.partition.MyPartitioner");
         return properties;
     }
 
     public static void main(String[] args) {
-        for(int i=0;i<1;i++){
+        for(int i=0;i<5;i++){
             ProducerRecord<String,String> record=null;
             record=new ProducerRecord<String,String>(TOPIC,"hello world");
             producer.send(record, new Callback() {
