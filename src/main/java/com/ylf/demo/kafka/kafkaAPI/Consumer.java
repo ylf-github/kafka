@@ -3,9 +3,6 @@ package com.ylf.demo.kafka.kafkaAPI;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -15,9 +12,8 @@ import java.util.Properties;
  * @desc:
  */
 public class Consumer {
-    static Logger log = LoggerFactory.getLogger(Consumer.class);
 
-    private static final String TOPIC = "ylf";
+    private static final String TOPIC = "face";
     private static final String BROKER_LIST = "120.27.246.207:9092";
     private static KafkaConsumer<String,String> consumer = null;
     private static ArrayList<String> list=new ArrayList<>();
@@ -41,9 +37,9 @@ public class Consumer {
 
     public static void main(String[] args) {
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(10);
+            ConsumerRecords<String, String> records = consumer.poll(1000);
             for (ConsumerRecord<String, String> record : records) {
-                System.out.println(record.value());
+                System.out.println(record.topic()+","+record.partition()+","+record.value());
             }
         }
     }
