@@ -1,11 +1,21 @@
 server:
   port: 8888
 spring:
+#  redis:
+#    host: 127.0.0.1
+#    password: haha123.
+#    sentinel:
+#      master: mymaster
+#      nodes: 127.0.0.1:26379,127.0.0.1:36379,127.0.0.1:36380
+    #    cluster:
+#      nodes: 127.0.0.1:6379,127.0.0.1:7379,127.0.0.1:6380,127.0.0.1:7380,127.0.0.1:6381,127.0.0.1:7381
   kafka:
     bootstrap-servers: 120.27.246.207:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: com.ylf.demo.kafka.util.KafkaEncoder
+      transaction-id-prefix: myProducer
+      acks: all
     consumer:
       group-id: 0
       enable-auto-commit: true

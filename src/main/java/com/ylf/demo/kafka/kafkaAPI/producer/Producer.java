@@ -24,6 +24,9 @@ public class Producer {
 
     private static Properties initConfig(){
         Properties properties=new Properties();
+        properties.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG,"heihei");
+        properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG,true);
+        properties.put(ProducerConfig.ACKS_CONFIG,"-1");
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,BROKER_LIST);
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
